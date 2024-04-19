@@ -1,0 +1,13 @@
+body{
+    background-color: rgba(0, 153, 255, 0.253)
+}
+
+.output{
+    height:30vh;
+    width: 90vw;
+    background:white;
+    text-align: center;
+
+    margin-top:10%;
+    margin-left: 10%;
+}
