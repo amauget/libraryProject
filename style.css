@@ -1,13 +1,170 @@
+@font-face {
+    font-family: "cursive";
+    src: url('externalContent/Camilla\ Ahoy.otf');
+}
+@font-face {
+    font-family: 'caviar';
+    src: url('externalContent/CaviarDreams.ttf');
+}
+:root{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
 body{
-    background-color: rgba(0, 153, 255, 0.253)
+    display:grid;
+    /* grid-template-columns:clamp(420px,60vw,1400px) clamp(280px,40vw,896px); */
+    grid-template-columns: 70% 30%;
+    grid-template-rows: auto;
+
+    font-family: 'caviar';
+    font-weight: 500;
+ 
 }
 
-.output{
-    height:30vh;
-    width: 90vw;
-    background:white;
-    text-align: center;
+.header{
+    border-bottom:1px gray solid;
+    margin:0;
+    grid-row: 1/2;
+    grid-column: 1/3;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h2{
+    font-family: 'cursive';
+    padding-left: 10vw;
+}
 
-    margin-top:10%;
-    margin-left: 10%;
+.header .addItem{
+    margin-right: 10vw;
+    height:3vh;
+    font-family: 'caviar';
+    color:black;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    background: none;
+    border:none;
+}
+ .form{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    padding: 0 2vw;
+    /* display:none; */
+    background:linear-gradient(to bottom, rgba(0, 0, 255, 0.349),white);
+    display: grid;
+    grid-auto-rows: min-content;
+    justify-content: center;
+    
+
+}
+ .form h4{
+    justify-self: center;
+    padding-bottom: 2rem;
+    grid-row:1/2 ;
+}
+
+ form{
+    grid-row: 2/3;
+    display:grid;
+    grid-template-columns: repeat(4,fit-content);
+    grid-template-rows: repeat(5, auto);
+    gap:10% 2%;
+    margin-bottom: 18vh;
+    justify-content: center;
+    gap:5vh;
+
+}
+
+form .addBtn{
+    grid-row: 5/6;
+    grid-column: 1/3;
+    background-color: rgba(0, 0, 255, 0.411);
+    width:50%;
+    justify-self: center;
+    border-radius: 15px;
+    border: none;
+    
+
+}
+.outputText{
+    grid-column: 1/2;
+    grid-row: 2/4;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: min-content;}
+li{
+    display:grid;
+    padding:0;
+    align-self: top;
+    grid-template-columns:90% 10%;
+    grid-template-rows: 1.5vh repeat(4,clamp(40px, 3rem,70px));
+    border:none;
+    margin-top:0;
+    box-shadow: inset 1px 1px 30px 30px rgba(224, 223, 223, 0.178);
+    margin:10px;
+    
+    
+    
+    
+}
+ .title, .author, .pages, .readBtn{
+    justify-self: center;
+    margin: 0 4%;
+    display: grid;
+    gap:10px;
+
+}
+.title{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin-top: 1vh;
+    
+    
+}
+.author{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.pages{
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.readBtn{
+    grid-column: 1/2;
+    grid-row: 5/6;
+    width:90%;
+    height:70%;
+    min-width:130px;
+    border:none;
+    border-radius: 15px;
+    background-color: rgba(9, 255, 0, 0.288);
+    align-self: center;
+    display: grid;
+    align-items: center;
+    justify-self: center;
+}
+.deleteBtn{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    text-align: center;
+    align-self: flex-start;
+    justify-self: right;
+    border-radius: 15px;
+    height:2.5vw;
+    width: 2.5vw;
+    min-height: 9px;
+    min-width: 9px;
+    /* padding:4px; */
+    font-size: .6rem;
+    font-weight: bold;
+    border:none;
+    background: none;
+    /* margin:.5vw; */
+    
+    
+}
+button:hover{
+    cursor: pointer;
 }
