@@ -111,4 +111,19 @@ function bookCreater(){
         readBtn.style.background = color;  
     }
 
+    function hiddenFormFunctions(){
+        let addItem = document.querySelector('.addItem');
+        let form = document.querySelector('.hidingContainer');
+        addItem.addEventListener('click',() =>{
+            form.style.display = 'block';
+        })
+
+        let exit = document.querySelector('.exit');
+        exit.addEventListener('click',() =>{
+            form.style.display = 'none';
+        })
+
+    }
+    
+    hiddenFormFunctions();
 

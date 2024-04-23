@@ -9,42 +9,42 @@
 <body>
     <div class="header">
         <h2>Library Records</h2>
-        <button class="addItem"> Click to Add Item:</button>
+        <button class="addItem"> Click to Add a New Book:</button>
     </div>
     
     </div>
-    <div class="form">
-        <h4>Input Here!</h4>
-        <form action="" method="post">
-            <label for="title" class="titleLab">Book Title:</label>
-            <input type="text" id="title" class="titleInpt" required>
     
-            <label for="author" class="authorLab">Author:</label>
-            <input type="text" id="author" class="authorInpt" >
-    
-            <label for="pages" class="pagesLab">Page Count:</label>
-            <input type="number" id="pages" class="pagesInpt" >
-            
-            <label for="readStatus">Read Status:</label>
-            <select name="readStatus" id="readStatus" class="readStatus">
-                <option value="Read">Read</option>
-                <option value="Not Read">Not Read</option>
-    
-            </select>
-            <button class="addBtn">Add Item</button>
-        </form>
+    <div class="hidingContainer">
+        <div class="form">
+            <div class="formHeader">
+                <h4>Input Here!</h4>
+                <button class="exit">X</button>
+            </div>
+            <form action="" method="post">
+                <label for="title" class="titleLab">Book Title:</label>
+                <input type="text" id="title" class="titleInpt" required>
+        
+                <label for="author" class="authorLab">Author:</label>
+                <input type="text" id="author" class="authorInpt" >
+        
+                <label for="pages" class="pagesLab">Page Count:</label>
+                <input type="number" id="pages" class="pagesInpt" >
+        
+                <label for="readStatus">Read Status:</label>
+                <select name="readStatus" id="readStatus" class="readStatus">
+                    <option value="Read">Read</option>
+                    <option value="Not Read">Not Read</option>
+        
+                </select>
+                <button class="addBtn">Add Item</button>
+            </form>
+        </div>
     </div>
 
 
 
     <ul class="outputText">
-        <li>
-            <div class="title">Lord of the Rings</div>
-            <div class="author">By: J.R.R. Tolkein</div>
-            <div class="pages">450 pages</div>
-            <button class="deleteBtn">X</button>
-            <button class="readBtn">Read</button>
-        </li>
+      
     </ul>
 
 
