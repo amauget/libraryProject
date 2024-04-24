@@ -12,137 +12,140 @@
     box-sizing: border-box;
 }
 body{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows: min-content;
     display:grid;
-    /* grid-template-columns:clamp(420px,60vw,1400px) clamp(280px,40vw,896px); */
-    grid-template-columns: 70% 30%;
-    grid-template-rows: auto;
-
     font-family: 'caviar';
     font-weight: 500;
- 
+    min-height: 100vh;
 }
-
 .header{
-    border-bottom:1px gray solid;
-    margin:0;
     grid-row: 1/2;
     grid-column: 1/3;
-    font-size: 1.5rem;
+    border-bottom:1px gray solid;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
+    margin:0;
+    margin-right: -5vw;
+
 }
 .header h2{
+    grid-column: 1/2;
+    grid-row: 1/2;
     font-family: 'cursive';
-    padding-left: 10vw;
+    font-size: 1.5rem;
+   
 }
-
 .header .addItem{
-    margin-right: 10vw;
-    height:3vh;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    font-size: .75rem;
     font-family: 'caviar';
     color:black;
+    background-color: white;
     font-weight: bolder;
-    font-size: 1.5rem;
     background: none;
     border:none;
+    margin-right: 8vw;
 }
 .hidingContainer{
-    display:none;
-}
- .form{
     grid-row: 2/3;
     grid-column: 2/3;
-    padding: 0 2vw;
-    justify-self: left;
-    background:linear-gradient(to bottom, rgba(0, 0, 255, 0.349),white);
-    display: grid;
-    grid-template-columns: min-content;
-    grid-auto-rows: min-content;
-    justify-content: center;
+    display:none;
     
-
 }
-.form .formHeader{
-    display:flex;
-    justify-content: space-between;
-    margin-right: -6vw;
-    padding:10px;
+.form{
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    right:10px;
 }
-.form h4{
+form{
+    background:linear-gradient(to bottom, rgba(0, 0, 255, 0.349),white);
+    grid-row: 2/3;
+    grid-column: 2/4;
+    padding:5vw;
+    padding-top: 1vw;
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    gap:1vh;
+    justify-content: center;
+    font-size: .8rem;
+}
+form .formHeader{
+    display: grid;
+    grid-template-columns: 3fr auto;
+    grid-template-rows: min-content;
+    font-size: 1rem;
+    gap:0;
+}
+form .formHeader h4{
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    margin:0;
     justify-self: center;
-    padding-bottom: 2rem;
-    grid-column: 2/3;
-    margin-left:6vw;
-    font-size: 1.25rem;
 }
-.form .formHeader .exit{
-    grid-column: 3/4;
-    height:1rem;
-    background:white;
-    height:1.5rem;
-    width:1.5rem;
-    border: none;
-    border-radius: 15px;
+form .formHeader .exit{
+    grid-row: 1/2;
+    grid-column: 2/-1;
     font-weight: bolder;
     align-self: top;
-    
-
+    background:white;
+    border: none;
+    border-radius: 15px;
+    height:1rem;
+    width:1rem; 
+    font-size: .5rem;   
 }
 
- form{
-    grid-row: 2/3;
-    display:grid;
-    grid-template-columns: repeat(4,fit-content);
-    grid-template-rows: repeat(5, auto);
-    gap:10% 2%;
-    margin-bottom: 18vh;
-    justify-content: center;
-    gap:5vh;
-}
 form input, .readStatus{
-    height:1.25rem;
     font-family: 'caviar';
+    font-size: .8rem;
+    width:85%;
 }
 form .addBtn{
-    grid-row: 5/6;
-    grid-column: 1/3;
-    background-color: rgba(0, 0, 255, 0.411);
-    width:50%;
     justify-self: center;
+    align-self: center;
+    background-color: rgb(224, 121, 4);
     border-radius: 15px;
     border: none;
+    font-family: 'caviar';
+    font-weight: bolder;
+    width:100%;
+    margin: 20px 0;
 }
 .outputText{
     grid-column: 1/2;
     grid-row: 2/4;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-auto-rows: min-content;}
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    gap: 2vh;
+    margin-right: 20%;
+    padding:0;
+}
+
 li{
     display:grid;
-    padding:0;
+    width:100%;
+    grid-template-columns:auto;
     align-self: top;
-    grid-template-columns:90% 10%;
-    grid-template-rows: 1.5vh repeat(4,clamp(40px, 3rem,70px));
+    justify-content: center;
     border:none;
-    margin-top:0;
-    box-shadow: inset 1px 1px 30px 30px rgba(224, 223, 223, 0.178);
-    margin:10px;
+    box-shadow: inset 1px 1px 30px 30px rgba(224, 223, 223, 0.178), 1px 1px 9px 2px rgba(71, 71, 71, 0.178);
+    gap:1vh;
+    padding-left:2vw;
+    font-size: 1rem;
 }
- .title, .author, .pages, .readBtn{
+.title, .author, .pages, .readBtn{
     justify-self: center;
-    margin: 0 4%;
     display: grid;
-    gap:10px;
-
 }
 .title{
     grid-column: 1/2;
     grid-row: 2/3;
-    margin-top: 1vh;
-    
-    
 }
 .author{
     grid-column: 1/2;
@@ -155,9 +158,6 @@ li{
 .readBtn{
     grid-column: 1/2;
     grid-row: 5/6;
-    width:90%;
-    height:70%;
-    min-width:130px;
     border:none;
     border-radius: 15px;
     background-color: rgba(9, 255, 0, 0.288);
@@ -165,6 +165,9 @@ li{
     display: grid;
     align-items: center;
     justify-self: center;
+    width:100%;
+    margin:2vh 0;
+    font-size: .7rem;
 }
 .deleteBtn{
     grid-column: 2/3;
@@ -172,20 +175,138 @@ li{
     text-align: center;
     align-self: flex-start;
     justify-self: right;
-    border-radius: 15px;
-    height:2.5vw;
-    width: 2.5vw;
-    min-height: 9px;
-    min-width: 9px;
-    /* padding:4px; */
-    font-size: .6rem;
     font-weight: bold;
     border:none;
     background: none;
-    /* margin:.5vw; */
-    
-    
+    font-size: .7rem;
+    padding:5px;
 }
-button:hover{
-    cursor: pointer;
+.footer{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    bottom:0;
+    background: linear-gradient(to top, green, white);
+    font-size: .5rem;
+    width:100%;
+    height:2rem;
+    padding-left:10%;
+    margin-left:-10%;
+}
+.footer img{
+    height:1.5rem;
+    width: auto;
+
+}
+
+@media only screen and (min-width:1000px) { 
+    body{        
+        grid-template-columns:clamp(420px,60vw,1400px) clamp(280px,40vw,896px);
+    }
+    
+    .header{
+       
+    }
+    .header h2{
+        padding-left: 10vw;
+        font-size: 2rem;
+        margin:0;
+
+    }
+    
+    .header .addItem{
+        position: fixed;
+        right:0;
+        margin-right: 0vw;
+        margin-bottom: 3vh;
+        height:3vh; 
+        font-size: 2rem;
+        background-color: white;
+    }
+    form .formHeader{
+        justify-content: left;
+        text-align: left;
+        padding-top: 10px;
+        
+    }
+    form .formHeader .exit{
+        margin-right: -2vw;
+        height: 2rem;
+        width:2rem;
+        font-size: 1rem;
+    }
+    .form{
+        position: fixed;
+        right:0;
+        
+    }
+    .form h4{
+        padding-bottom: 2rem;
+        font-size: 2rem;
+    }
+    
+     form{
+        font-size: 1.5rem;
+        padding:0 3vw;
+        gap:2vh;
+    }
+    form input, .readStatus, option{
+        font-size:1.5rem;
+    }
+    form .addBtn{
+        width: 65%;
+        height:2rem;
+        font-size: 1.5rem;
+    }
+    .outputText{
+        grid-template-columns: repeat(3,min-content);
+        margin: 0;
+        margin-top: 3%;
+        margin-left: 10%;
+    }
+    li{
+        grid-template-columns:15vw 5vw;
+        grid-template-rows: 1.5vh repeat(4,clamp(40px, 3rem,70px));
+        padding:0;
+        margin-top:0;
+        
+        
+        font-size: 1.3rem;
+    }
+     .title, .author, .pages, .readBtn{
+        margin: 0 4%;
+        gap:10px;
+        font-size: 1.2rem;
+
+    }
+    .title, .author, .pages{
+        margin-right:-5vw;
+    }
+    .title{
+        margin-top: 1vh;
+        
+        
+    }
+    .readBtn{
+        grid-column: 1/3;
+        width:90%;
+        height:70%;
+        min-width:130px;
+    }
+    .deleteBtn{
+        border-radius: 15px;
+        height:2.5vw;
+        width: 2.5vw;
+        min-height: 9px;
+        min-width: 9px;
+        font-size: .8rem; 
+    }
+    button:hover{
+        cursor: pointer;
+    }
+    .footer{
+        display:none;
+    }
+    
 }

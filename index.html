@@ -16,19 +16,21 @@
     
     <div class="hidingContainer">
         <div class="form">
-            <div class="formHeader">
-                <h4>Input Here!</h4>
-                <button class="exit">X</button>
-            </div>
+           
             <form action="" method="post">
+                <div class="formHeader">
+                    <h4>Input Here!</h4>
+                    <button class="exit">X</button>
+                </div>
+
                 <label for="title" class="titleLab">Book Title:</label>
                 <input type="text" id="title" class="titleInpt" required>
         
                 <label for="author" class="authorLab">Author:</label>
-                <input type="text" id="author" class="authorInpt" >
+                <input type="text" id="author" class="authorInpt" required>
         
-                <label for="pages" class="pagesLab">Page Count:</label>
-                <input type="number" id="pages" class="pagesInpt" >
+                <label for="pages" class="pagesLab" >Page Count:</label>
+                <input type="number" id="pages" class="pagesInpt" required>
         
                 <label for="readStatus">Read Status:</label>
                 <select name="readStatus" id="readStatus" class="readStatus">
@@ -44,8 +46,11 @@
 
 
     <ul class="outputText">
-      
     </ul>
+    <div class="footer">
+        <h3>You've found my mobile/zoom easter-egg!</h3>
+        <img src="externalContent/odin-lined.png" alt="Odin Project Icon">
+    </div>
 
 
 </body>
