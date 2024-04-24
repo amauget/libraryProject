@@ -58,7 +58,7 @@ body{
 .form{
     display: flex;
     justify-content: flex-end;
-    position: fixed;
+    position: absolute;
     right:10px;
 }
 form{
@@ -120,14 +120,13 @@ form .addBtn{
     grid-column: 1/2;
     grid-row: 2/4;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     grid-auto-rows: min-content;
     gap: 2vh;
-    margin-right: 20%;
+    margin-right: 5%;
     padding:0;
 }
-
-li{
+.outputText li{
     display:grid;
     width:100%;
     grid-template-columns:auto;
@@ -139,23 +138,23 @@ li{
     padding-left:2vw;
     font-size: 1rem;
 }
-.title, .author, .pages, .readBtn{
+li .title, .author, .pages, .readBtn{
     justify-self: center;
     display: grid;
 }
-.title{
+li .title{
     grid-column: 1/2;
     grid-row: 2/3;
 }
-.author{
+li .author{
     grid-column: 1/2;
     grid-row: 3/4;
 }
-.pages{
+li .pages{
     grid-column: 1/2;
     grid-row: 4/5;
 }
-.readBtn{
+li .readBtn{
     grid-column: 1/2;
     grid-row: 5/6;
     border:none;
@@ -169,7 +168,7 @@ li{
     margin:2vh 0;
     font-size: .7rem;
 }
-.deleteBtn{
+li .deleteBtn{
     grid-column: 2/3;
     grid-row: 1/2;
     text-align: center;
@@ -197,24 +196,17 @@ li{
 .footer img{
     height:1.5rem;
     width: auto;
-
 }
 
-@media only screen and (min-width:1000px) { 
+@media only screen and (min-width:1100px) { 
     body{        
-        grid-template-columns:clamp(420px,60vw,1400px) clamp(280px,40vw,896px);
-    }
-    
-    .header{
-       
+        grid-template-columns:clamp(500px,60vw,1400px) clamp(280px,40vw,896px);
     }
     .header h2{
         padding-left: 10vw;
         font-size: 2rem;
         margin:0;
-
     }
-    
     .header .addItem{
         position: fixed;
         right:0;
@@ -228,7 +220,6 @@ li{
         justify-content: left;
         text-align: left;
         padding-top: 10px;
-        
     }
     form .formHeader .exit{
         margin-right: -2vw;
@@ -239,14 +230,12 @@ li{
     .form{
         position: fixed;
         right:0;
-        
     }
     .form h4{
         padding-bottom: 2rem;
         font-size: 2rem;
     }
-    
-     form{
+    form{
         font-size: 1.5rem;
         padding:0 3vw;
         gap:2vh;
@@ -263,38 +252,33 @@ li{
         grid-template-columns: repeat(3,min-content);
         margin: 0;
         margin-top: 3%;
-        margin-left: 10%;
     }
-    li{
+    .outputText li{
         grid-template-columns:15vw 5vw;
         grid-template-rows: 1.5vh repeat(4,clamp(40px, 3rem,70px));
         padding:0;
         margin-top:0;
-        
-        
         font-size: 1.3rem;
     }
-     .title, .author, .pages, .readBtn{
+     li .title, .author, .pages, .readBtn{
         margin: 0 4%;
         gap:10px;
         font-size: 1.2rem;
-
+        justify-self: center;
     }
-    .title, .author, .pages{
+    li .title, .author, .pages{
         margin-right:-5vw;
     }
-    .title{
+    li .title{
         margin-top: 1vh;
-        
-        
     }
-    .readBtn{
+    li .readBtn{
         grid-column: 1/3;
         width:90%;
         height:70%;
         min-width:130px;
     }
-    .deleteBtn{
+    li .deleteBtn{
         border-radius: 15px;
         height:2.5vw;
         width: 2.5vw;
@@ -308,5 +292,16 @@ li{
     .footer{
         display:none;
     }
-    
 }
+/* @media only screen and (max-width:500px) { 
+    body{
+        grid-template-columns: repeat(4,25vw);
+    }
+    .outputText{
+        grid-template-columns: repeat(3,1fr);
+    }
+    li{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+} */

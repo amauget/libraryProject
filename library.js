@@ -1,6 +1,6 @@
 let output = document.querySelector('.outputText')
-const subButton = document.querySelector('.addBtn');
-const inputs = document.querySelectorAll('input');
+let subButton = document.querySelector('.addBtn');
+let inputs = document.querySelectorAll('input');
 let tracking = [] /* array to distinguish whether a book has been added. */
 
 
@@ -23,7 +23,6 @@ subButton.addEventListener('click', (event) =>{
     event.preventDefault();
 });
 
-
 function bookCreater(title,author,pages,readStatus){
     function Book(title, author, pages, readStatus){
         this.title = title;
@@ -31,18 +30,15 @@ function bookCreater(title,author,pages,readStatus){
         this.pages = pages;
         this.readStatus = readStatus;
     }
-        
     Book.prototype.getBookInfo = function(){
         let titleItem = bookItem.title;
         let authorItem = `By: ${bookItem.author}`;
         let pagesItem = `${bookItem.pages} pages`;
         let readItem = bookItem.readStatus;
         bookOutput(titleItem, authorItem, pagesItem, readItem);
-
     }
 
     let bookItem = new Book(title, author, pages, readStatus);
-    
     
     if(!tracking.includes(bookItem.title)){ /* does not include */
         tracking.push(bookItem.title);
@@ -52,7 +48,6 @@ function bookCreater(title,author,pages,readStatus){
         alert("Title is already in the library!");
     }
 }
-
     function bookOutput(titleItem, authorItem, pagesItem, readItem){  
         let title = document.createElement('div');
         title.className = 'title'
@@ -118,6 +113,5 @@ function bookCreater(title,author,pages,readStatus){
             event.preventDefault();
         })
     }
-    
     hiddenFormFunctions();
 
