@@ -66,10 +66,8 @@ function bookCreater(title,author,pages,readStatus){
       readBtn.textContent = this.readStatus;
       
 
-      let li = document.createElement('li');         /* placement necessary to create new li items */
-      li.append(title,author, pages);
-      li.appendChild(deleteBtn);
-      li.appendChild(readBtn);
+      let li = document.createElement('li');  
+      li.append(title,author, pages, deleteBtn, readBtn);
       output.appendChild(li);
       
       buttonEvents(deleteBtn, readBtn, li, this.title)
