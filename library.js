@@ -1,10 +1,23 @@
+hiddenFormFunctions();
+
+function hiddenFormFunctions(){
+  let addItem = document.querySelector('.addItem');
+  let form = document.querySelector('.hidingContainer');
+  addItem.addEventListener('click',() =>{
+      form.style.display = 'block';
+  })
+  let exit = document.querySelector('.exit');
+  exit.addEventListener('click',(event) =>{
+      form.style.display = 'none';
+      event.preventDefault();
+  })
+}
 let output = document.querySelector('.outputText')
-let subButton = document.querySelector('.addBtn');
+let addBtn = document.querySelector('.addBtn');
 let inputs = document.querySelectorAll('input');
-let tracking = [] /* array to distinguish whether a book has been added. */
+let tracking = []; /* array to distinguish whether a book has been added. */
 
-
-subButton.addEventListener('click', (event) =>{
+addBtn.addEventListener('click', (event) =>{
     // HTML vars nested to access:
     let form = document.querySelector('form');
     let title = (document.querySelector('.titleInpt')).value;
@@ -24,94 +37,82 @@ subButton.addEventListener('click', (event) =>{
 });
 
 function bookCreater(title,author,pages,readStatus){
-    function Book(title, author, pages, readStatus){
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.readStatus = readStatus;
+  class Book{
+    constructor(title, author, pages, readStatus){
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.readStatus = readStatus;
     }
-    Book.prototype.getBookInfo = function(){
-        let titleItem = bookItem.title;
-        let authorItem = `By: ${bookItem.author}`;
-        let pagesItem = `${bookItem.pages} pages`;
-        let readItem = bookItem.readStatus;
-        bookOutput(titleItem, authorItem, pagesItem, readItem);
-    }
+    bookOutput(){  
+      let title = document.createElement('div');
+      title.className = 'title'
+      title.textContent = this.title;
 
+      let author = document.createElement('div');
+      author.className ='author';
+      author.textContent = `By: ${this.author}`;
+
+      let pages = document.createElement('div');
+      pages.className = 'pages';
+      pages.textContent = `${this.pages} pages`;
+
+      let deleteBtn = document.createElement('button'); /* button under conditional to populate all list items. */
+      deleteBtn.className = 'deleteBtn';
+      deleteBtn.textContent = 'X';
+
+      let readBtn = document.createElement('button');  
+      readBtn.className = 'readBtn'
+      readBtn.textContent = this.readStatus;
+      
+
+      let li = document.createElement('li');         /* placement necessary to create new li items */
+      li.append(title,author, pages);
+      li.appendChild(deleteBtn);
+      li.appendChild(readBtn);
+      output.appendChild(li);
+      
+      buttonEvents(deleteBtn, readBtn, li, this.title)
+      changeColor(readBtn);
+    }
+  }
     let bookItem = new Book(title, author, pages, readStatus);
     
+    
     if(!tracking.includes(bookItem.title)){ /* does not include */
-        tracking.push(bookItem.title);
-        bookItem.getBookInfo()
+      tracking.push(bookItem.title);
+      bookItem.bookOutput();
     }
     else{
         alert("Title is already in the library!");
     }
 }
-    function bookOutput(titleItem, authorItem, pagesItem, readItem){  
-        let title = document.createElement('div');
-        title.className = 'title'
-        title.textContent = titleItem;
+function buttonEvents(deleteBtn, readBtn, li, title){
+  
+  deleteBtn.addEventListener('click',() => {
+    tracking = tracking.filter(item => item !== title);
+    // filters tracking to remove item with class name === to delBtn click.
+    li.remove();
+    return tracking;
+  })
 
-        let author = document.createElement('div');
-        author.className ='author';
-        author.textContent = authorItem;
-
-        let pages = document.createElement('div');
-        pages.className = 'pages';
-        pages.textContent = pagesItem;
-
-        let deleteButton = document.createElement('button'); /* button under conditional to populate all list items. */
-        deleteButton.className = 'deleteBtn';
-        deleteButton.textContent = 'X';
-
-        let readBtn = document.createElement('button');  
-        readBtn.className = 'readBtn'
-        readBtn.textContent = readItem;
-        changeColor(readBtn);
-
-        let li = document.createElement('li');         /* placement necessary to create new li items */
-        li.append(title,author, pages);
-        li.appendChild(deleteButton);
-        li.appendChild(readBtn);
-        output.appendChild(li);
-
-        deleteButton.addEventListener('click',() => {
-            tracking = tracking.filter(item => item !== title.textContent);
-            // filters tracking to remove item with class name === to delBtn click.
-            li.remove();
-            return tracking;
-        })
-
-        readBtn.addEventListener('click', () =>{
-            if(readBtn.textContent === "Read"){
-                readBtn.textContent = 'Not Read';
-            }
-            else{
-                readBtn.textContent = 'Read'
-            }
-            changeColor(readBtn)
-        })
-}
+  readBtn.addEventListener('click', () =>{
+      if(readBtn.textContent === "Read"){
+          readBtn.textContent = 'Not Read';
+      }
+      else{
+          readBtn.textContent = 'Read'
+      }
+      changeColor(readBtn)
+    })
+  }
     function changeColor(readBtn){
         let color = 'rgba(9, 255, 0, 0.288)';
         if(readBtn.textContent === 'Not Read'){
             color = 'rgba(255, 0, 0, 0.288)'
         } 
         readBtn.style.background = color;  
-    }
+}
 
-    function hiddenFormFunctions(){
-        let addItem = document.querySelector('.addItem');
-        let form = document.querySelector('.hidingContainer');
-        addItem.addEventListener('click',() =>{
-            form.style.display = 'block';
-        })
-        let exit = document.querySelector('.exit');
-        exit.addEventListener('click',(event) =>{
-            form.style.display = 'none';
-            event.preventDefault();
-        })
-    }
-    hiddenFormFunctions();
+
 
