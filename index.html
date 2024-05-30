@@ -14,36 +14,42 @@
     
     </div>
     
-    <div class="hidingContainer">
-        <div class="form">
-           
-            <form action="" method="post">
-                <div class="formHeader">
-                    <h4>Input Here!</h4>
-                    <button class="exit">X</button>
-                </div>
-
+    <div class="hiddenContainer">
+      <div class="form">
+         
+          <form action="" method="post">
+              <div class="formHeader">
+                  <h4>Input Here!</h4>
+                  <button class="exit">X</button>
+              </div>
+              <div class="inputContainer">
                 <label for="title" class="titleLab">Book Title:</label>
                 <input type="text" id="title" class="titleInpt" required>
-        
+                <span class="error" aria-live="polite"></span>
+              </div>
+      
+              <div class="inputContainer">
                 <label for="author" class="authorLab">Author:</label>
                 <input type="text" id="author" class="authorInpt" required>
-        
+                <span class="error" aria-live="polite"></span>
+              </div>
+      
+              <div class="inputContainer">
                 <label for="pages" class="pagesLab" >Page Count:</label>
-                <input type="number" id="pages" class="pagesInpt" required>
-        
-                <label for="readStatus">Read Status:</label>
-                <select name="readStatus" id="readStatus" class="readStatus">
-                    <option value="Read">Read</option>
-                    <option value="Not Read">Not Read</option>
-        
-                </select>
-                <button class="addBtn">Add Item</button>
-            </form>
-        </div>
-    </div>
-
-
+                <input type="number" id="pages" class="pagesInpt" required min="5">
+                <span class="error" aria-live="polite"></span>
+              </div>
+  
+              <label for="readStatus">Read Status:</label>
+              <select name="readStatus" id="readStatus" class="readStatus">
+                  <option value="Read">Read</option>
+                  <option value="Not Read">Not Read</option>
+      
+              </select>
+              <button class="addBtn">Add Item</button>
+          </form>
+      </div>
+  </div>
 
     <ul class="outputText">
     </ul>

@@ -2,13 +2,14 @@ hiddenFormFunctions();
 
 function hiddenFormFunctions(){
   let addItem = document.querySelector('.addItem');
-  let form = document.querySelector('.hidingContainer');
+  let hiddenContainer = document.querySelector('.hiddenContainer');
   addItem.addEventListener('click',() =>{
-      form.style.display = 'block';
+      hiddenContainer.style.display = 'block';
+      formValidation();
   })
   let exit = document.querySelector('.exit');
   exit.addEventListener('click',(event) =>{
-      form.style.display = 'none';
+      hiddenContainer.style.display = 'none';
       event.preventDefault();
   })
 }
@@ -17,24 +18,72 @@ let addBtn = document.querySelector('.addBtn');
 let inputs = document.querySelectorAll('input');
 let tracking = []; /* array to distinguish whether a book has been added. */
 
-addBtn.addEventListener('click', (event) =>{
-    // HTML vars nested to access:
-    let form = document.querySelector('form');
-    let title = (document.querySelector('.titleInpt')).value;
-    let author = (document.querySelector('.authorInpt')).value;
-    let pages = (document.querySelector('.pagesInpt')).value;
-    let readStatus = (document.querySelector('.readStatus')).value;
+function formValidation(){
+  let title = (document.querySelector('.titleInpt'));
+  let author = (document.querySelector('.authorInpt'));
+  let pages = (document.querySelector('.pagesInpt'));
+  let readStatus = (document.querySelector('.readStatus'));
+  
+  addBtn.addEventListener('click', (event) =>{
+    let elementArray = [title, author, pages];
 
-    if(title.length >= 1 && author.length >= 1 && pages.length >= 1){
-        bookCreater(title,author,pages,readStatus);
-        inputs.forEach(input =>{input.value = ''});
-        // iterates over all input elements.
+    let validCount = 0; /* adds up to 3 as each elementArray item is validated. */
+    
+    for (let i = 0; i < elementArray.length; i++){
+      
+      let item = elementArray[i];
+
+      let itemError = document.querySelector(`#${item.id}+ span.error`);
+
+      if(item.validity.valid){
+        item.style.border = '1px solid black';
+        
+        itemError.textContent = ''; 
+        itemError.className = 'error' /* switch back to OG format */
+
+        validCount++;
+
+        if(validCount === 3){
+          let duplicate = bookCreater(title.value, author.value, pages.value, readStatus.value);
+          if(duplicate === false){
+            elementArray.forEach(item => {
+              formReset(item, itemError);
+            }); 
+          }
+        }
+      }
+      else{
+        showError(item, itemError);
+      }
+      event.preventDefault();
     }
-    else{
-        form.reportValidity(); /* Prompts HTML "required" fields to display */
+  })
+  let formReset = (item, itemError) =>{
+    item.value = '';
+    item.style.border = '1px solid black';
+
+    itemError.textContent = ''; 
+    itemError.className = 'error' /* switch back to OG format */
+
+  }
+  let showError = (item, itemError) => {
+    if(item.validity.valueMissing){
+      itemError.textContent = item.type + ' is required.'
     }
-    event.preventDefault();
-});
+    else if(item.validity.typeMismatch){
+      itemError.textContent = `Entry does not match the required ${item.type} format`;
+    }
+    else if(item.validity.rangeUnderflow){
+      console.log('not enough pages')
+      itemError.textContent = `Item must have a minimum page count of ${item.min}.`;
+    }
+
+     itemError.className = 'error active'
+     item.style.border = '1px solid red'
+    }
+
+}
+
 
 function bookCreater(title,author,pages,readStatus){
   class Book{
@@ -76,13 +125,17 @@ function bookCreater(title,author,pages,readStatus){
   }
     let bookItem = new Book(title, author, pages, readStatus);
     
-    
-    if(!tracking.includes(bookItem.title)){ /* does not include */
-      tracking.push(bookItem.title);
-      bookItem.bookOutput();
+    console.log(tracking)
+
+    if(tracking.includes(bookItem.title)){ /* does not include */
+      alert("Title is already in the library!");
+      return true;
+      
     }
     else{
-        alert("Title is already in the library!");
+      tracking.push(bookItem.title);
+      bookItem.bookOutput();
+      return false;
     }
 }
 function buttonEvents(deleteBtn, readBtn, li, title){
